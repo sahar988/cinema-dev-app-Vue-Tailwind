@@ -1,0 +1,31 @@
+$loader-color-primary: #3D314A;
+$loader-color-secondary: white;
+.loader {
+    &__text {
+        margin: 5px auto;
+        color: $loader-color-primary;    
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    &__filmstrip {
+        position: relative;
+        width: 56px;
+        height: 70px;
+        background: $loader-color-primary;
+        z-index: -1;
+        &:before, &:after {
+            content: '';
+            position: absolute;
+            height: 120%;
+            border-left: 5px dashed $loader-color-secondary;
+            animation: roll 1000ms infinite;
+        }
+        &:before {left: 5px;}
+        &:after {right: 5px;}
+    }
+}
+
+@keyframes roll {
+    0% {top: 0px;}
+    100% {top: -15px;}
+}
