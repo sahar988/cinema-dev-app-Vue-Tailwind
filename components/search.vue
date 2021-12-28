@@ -20,15 +20,11 @@ export default {
   name: 'IndexPage',
   data(){
     return {
-      selectedReleaseDate: {
-        startDate:'',
-        endDate:''
-      }
+      selectedReleaseDate: null
     }
   },
   methods:{
     search() {
-      //searchResult.items = [certData1, certData2];
       this.$emit('search-release-date',this.selectedReleaseDate || [])
     },
   }
@@ -36,9 +32,6 @@ export default {
 </script>
 
 <style>
-.nuxt-logo {
-  height: 180px;
-}
 .light-gray {
   background: #E2E2E2;
 }

@@ -18,19 +18,19 @@
         <div class="flex w-screen justify-around flex-col pl-10 pr-6">
           <div class="detail__items">
             <strong>Budget</strong> 
-            <span>${{movie.budget}}</span>
+            <span>{{movie.budget | comma}}</span>
           </div>
           <div class="detail__items">
             <strong>Revenue</strong> 
-            <span>${{movie.revenue}}</span>
+            <span>{{movie.revenue | comma}}</span>
           </div>
           <div class="detail__items">
             <strong>Release Date</strong> 
-            <span>${{movie.release_date}}</span>
+            <span>{{movie.release_date}}</span>
           </div>
           <div class="detail__items">
             <strong>Runtime</strong> 
-            <span>${{movie.runtime}}</span>
+            <span>{{movie.runtime}}</span>
           </div>
           <div class="flex justify-between items-center">
             <strong>Score</strong> 
@@ -72,6 +72,11 @@ import MovieLoading from '~/components/movieLoading'
 import Rating from '~/components/rating'
 
 export default {
+  filters:{
+    comma(value){
+      return `$${value?.toString?.().replace(/\B(?=(\d{3})+(?!\d))/g, '’') || ''}`;
+    }
+  },
   components:{
     MovieLoading,
     Rating
