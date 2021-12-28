@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Movies App',
+    title: 'Smart Movies',
     htmlAttrs: {
       lang: 'en'
     },
@@ -28,13 +28,13 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'vue2-daterange-picker/dist/vue2-daterange-picker.css',
+    'vue2-datepicker/index.css',
     '@assets/css/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    //{ src: '~/plugins/vue-datepicker', ssr: false }
+    { src: '~/plugins/vue-datepicker', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -44,6 +44,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/moment',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -11,9 +11,9 @@
  }
 
  export const actions ={
-    getMovieList({commit}){
+    getMovieList({commit},query){
         try {
-            return this.$axios.$get(MOVIE_LIST)
+            return this.$axios.$get(MOVIE_LIST(query))
             // commit('setMovieList', response?.results)
         } catch(err){
             console.log(err)

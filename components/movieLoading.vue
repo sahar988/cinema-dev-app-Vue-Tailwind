@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto flex justify-center mb-20">
+    <div class="container mx-auto flex justify-center mb-20 max-w-5xl">
         <div  class="loader mr-6">
             <div class="loader__filmstrip">
             </div>

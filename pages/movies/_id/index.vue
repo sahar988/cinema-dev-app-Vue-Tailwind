@@ -1,11 +1,13 @@
 <template>
-  <div class="container mx-auto my-16">
+  <div class="container mx-auto my-16 max-w-5xl">
     <div class="flex light-gray h-2 w-full h-20 pr-6 rounded-md pl-20 justify-between items-center title-box">
       <div class="flex items-center">
         <button class="rounded-3xl bg-blue-400 h-10 text-white p-2 px-4" @click="$router.back()">Back</button>
         <div class="ml-16 text-lg title-box__caption">
-          <div class="font-bold"> {{movie.original_title}} </div>
-          <span>{{movie.title}}</span>
+          <nuxt-link to="/movies">
+            <div class="font-bold"> {{movie.title}} </div>
+            <span>{{movie.tagline}}</span>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -30,9 +32,13 @@
             <strong>Runtime</strong> 
             <span>${{movie.runtime}}</span>
           </div>
-          <div class="detail__items">
+          <div class="flex justify-between items-center">
             <strong>Score</strong> 
-            <span class="text-sm"><span>({{movie.vote_average}})</span>&nbsp;	<span v-if="movie.vote_count">{{movie.vote_count}} votes</span></span>
+            <div class="flex">
+              <Rating class="mr-2" :value="movie.vote_average" :total="10"/>
+              <span class="mr-2">{{movie.vote_average}}</span>
+              <div v-if="movie.vote_count" class="text-right">({{movie.vote_count}} votes)</div>
+            </div>
           </div>
           <div class="detail__items">
             <strong>Genres</strong> 
@@ -63,10 +69,12 @@
 import {mapActions} from 'vuex'
 import movieMixin from '~/mixins/movieMixin'
 import MovieLoading from '~/components/movieLoading'
+import Rating from '~/components/rating'
 
 export default {
   components:{
-    MovieLoading
+    MovieLoading,
+    Rating
   },
   mixins:[movieMixin],
   data(){
@@ -79,7 +87,12 @@ export default {
   computed:{
     topCredits(){
       if(this.credits?.cast?.length > this.numberOfTopCredit){
-        return this.credits?.cast.splice(this.numberOfTopCredit)
+
+        let topTenPopular = this.credits?.cast.sort((a, b) => {
+          return b.popularity - a.popularity
+        });
+        topTenPopular.splice(this.numberOfTopCredit)
+        return topTenPopular
       }
       return this.credits?.cast || []
     },
@@ -102,19 +115,6 @@ export default {
   },
   methods:{
     ...mapActions('movie',['getMovieDetail','getMovieCredit']),
-    setDetailData(){
-      let data =[ {
-        key:'Budget',value:this.movie.budget,
-        key:'Revenue',value:this.movie.revenue,
-        key:'Release Date',value:this.movie.release_date,
-        key:'Runtime',value:this.movie.runtime,
-        key:'Score',value:this.movie.score,
-        key:'Genres',value:this.movie.genres,
-        key:'IMDB Link',value:`https://www.imdb.com/title/${this.movie.imdb_id}`,
-        key:'Budget',value:this.movie.budget,
-
-      }]
-    }
   }
 }
 </script>
