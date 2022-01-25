@@ -1,4 +1,4 @@
-# moviesApp
+# moviesApp . A Simple Vue/Nuxt-Tailwind Project 
 
 ## Build Setup
 
