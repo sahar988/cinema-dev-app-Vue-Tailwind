@@ -1,4 +1,4 @@
-# Cinema-dev . Using Vue/Nuxt-Tailwind  
+# Cinema-dev . Using Vue/Nuxt-Vuex-Tailwind  
 
 ## Build Setup
 
